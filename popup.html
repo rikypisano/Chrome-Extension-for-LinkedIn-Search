@@ -1,0 +1,177 @@
+<!--
+  This is the popup  HTML file. It will appear whenever the user
+  presses the extension button.  It just a plain old web page!
+  But it can communicate with the background and content scripts
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+  <script>
+    console.log('run js from html page');
+  </script>
+   <meta charset="UTF-8">
+    <title>Extension Pop-Up</title>
+     <link href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/colors.css">
+    <script src="//dev.finnthewebdesigner.com/pentitle.js"></script>
+    
+    <style>
+       /* Modal Structure */
+
+    html,
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      margin: 0;
+      min-height: 180px;
+      padding: 0;
+      width: 384px;
+    }
+
+    h1 {
+      font-family: 'Menlo', monospace;
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      color: #2f5876;
+    }
+
+    img {
+      width: 30px;
+    }
+
+    .logo {
+      padding: 16px;
+    }
+
+    .logo-icon {
+      vertical-align: text-bottom;
+      margin-right: 12px;
+    }
+
+    .version {
+      color: #444;
+      font-size: 18px;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 22px;
+    }
+
+    .holder {
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+    }
+  
+        svg {
+      width: 100px;
+      display: block;
+      margin: 40px auto 0;
+    }
+
+    .path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+      &.circle {
+        -webkit-animation: dash .9s ease-in-out;
+        animation: dash .9s ease-in-out;
+      }
+      &.line {
+        stroke-dashoffset: 1000;
+        -webkit-animation: dash .9s .35s ease-in-out forwards;
+        animation: dash .9s .35s ease-in-out forwards;
+      }
+      &.check {
+        stroke-dashoffset: -100;
+        -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+        animation: dash-check .9s .35s ease-in-out forwards;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin: 20px 0 60px;
+      font-size: 1.25em;
+      &.success {
+        color: #73AF55;
+      }
+      &.error {
+        color: #D06079;
+      }
+    }
+
+
+    @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @-webkit-keyframes dash-check {
+      0% {
+        stroke-dashoffset: -100;
+      }
+      100% {
+        stroke-dashoffset: 900;
+      }
+    }
+
+    @keyframes dash-check {
+      0% {
+        stroke-dashoffset: -100;
+      }
+      100% {
+        stroke-dashoffset: 900;
+      }
+    }
+
+    </style>
+
+  </head>
+  <body>
+      <div class="modal-header">
+          <h1 class="logo">
+            <img class="logo-icon" src="icon128.png">LinkedIn Search Assistant
+            <span class="version">(1.0.0)</span>
+          </h1>
+        </div>
+        <div class="flex-container">
+           
+<!--[if lte IE 9]>
+  <style>
+    .path {stroke-dasharray: 0 !important;}
+  </style>
+<![endif]-->
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+  <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+  <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+</svg>
+<p class="success">Oh Yeah!</p>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+  <circle class="path circle" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+  <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+  <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+</svg>
+<p class="error">Bummer!</p>
+        </div>
+    </body>
+</html>
