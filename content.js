@@ -4,20 +4,38 @@
 
 // This is the content script for the extension
 
+var sidebar = "<div class='sidebar'> <ul class='sidebar-list'> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 1</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 2</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 3</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 4</a></li> </ul> </div>";
+
 window.onload = function() {
-		function wait(ms){
-		   var start = new Date().getTime();
-		   var end = start;
-		   while(end < start + ms) {
-		     end = new Date().getTime();
-		  }
-		}
 
-		console.log('before');
-		wait(7000);  //7 seconds in milliseconds
-		console.log('after');
+// Replaces entire page with sidebar	     
+    //   var body = document.body;
 
-        alert('the DOM is ready');
+    var sideNav = document.createElement('div');
+  	sideNav.innerHTML = sidebar;
+
+    document.body.insertBefore(sideNav, document.body.firstChild);
+
+    alert('Lets begin the search');
+
+    // Sidebar toggle
+    function toggleSidebar() {
+      $(".button").toggleClass("active");
+      $("main").toggleClass("move-to-left");
+      $(".sidebar-item").toggleClass("active");
+      $(".sidebar").toggleClass("gray-background");
+    }
+
+    $(".button").on("click tap", function() {
+        toggleSidebar();
+    });
+
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) {
+          toggleSidebar();
+      }
+    });
+
 
 		console.log("Chrome extension is running!");
 
@@ -30,22 +48,22 @@ window.onload = function() {
 		var title = str.includes('jobTitleEntities=');
 
 		var length = str.length;
-		
+
 		function checkLength() {
 		    if (length <= 3700) {
-		  	 $('.length').prop('checked', true);
+		  	 // $('.length').prop('checked', true);
 		  }
 		};
 
 		function checkGeo() {
 		    if (geo) {
-		     $('.geo').prop('checked', true);
+		     // $('.geo').prop('checked', true);
 		  }
 		};
 
 		function checkTitle() {
 		  if (title) {
-		     $('.title').prop('checked', true);
+		     // $('.title').prop('checked', true);
 		  }
 		};
 
