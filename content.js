@@ -16,7 +16,12 @@ window.onload = function() {
 
     document.body.insertBefore(sideNav, document.body.firstChild);
 
-    alert('the DOM is ready');
+    alert('Lets begin the search');
+
+    $(".button").toggleClass("active");
+    $("main").toggleClass("move-to-left");
+    $(".sidebar-item").toggleClass("active");
+
 
 		console.log("Chrome extension is running!");
 
