@@ -4,7 +4,7 @@
 
 // This is the content script for the extension
 
-var sidebar = "div class='nav-right visible-xs'> <div class='button' id='btn'> <div class='bar top'></div> <div class='bar middle'></div> <div class='bar bottom'></div> </div> </div> <!-- nav-right --> <main> <nav> <div class='nav-right hidden-xs'> <div class='button' id='btn'> <div class='bar top'></div> <div class='bar middle'></div> <div class='bar bottom'></div> </div> </div> <!-- nav-right --> </nav> </main><div class='sidebar'> <ul class='sidebar-list'> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 1</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 2</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 3</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 4</a></li> </ul> </div>";
+var sidebar = "<div class='sidebar'> <ul class='sidebar-list'> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 1</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 2</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 3</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 4</a></li> </ul> </div>";
 
 window.onload = function() {
 
@@ -18,9 +18,23 @@ window.onload = function() {
 
     alert('Lets begin the search');
 
-    $(".button").toggleClass("active");
-    $("main").toggleClass("move-to-left");
-    $(".sidebar-item").toggleClass("active");
+    // Sidebar toggle
+    function toggleSidebar() {
+      $(".button").toggleClass("active");
+      $("main").toggleClass("move-to-left");
+      $(".sidebar-item").toggleClass("active");
+      $(".sidebar").toggleClass("gray-background");
+    }
+
+    $(".button").on("click tap", function() {
+        toggleSidebar();
+    });
+
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) {
+          toggleSidebar();
+      }
+    });
 
 
 		console.log("Chrome extension is running!");
