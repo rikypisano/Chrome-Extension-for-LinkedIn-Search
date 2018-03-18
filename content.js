@@ -4,7 +4,14 @@
 
 // This is the content script for the extension
 
-var sidebar = "<div class='sidebar'> <ul class='sidebar-list'> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 1</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 2</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 3</a></li> <li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 4</a></li> </ul> </div>";
+var sidebar = "<div class='sidebar'> <ul class='sidebar-list'>"
+sidebar += "<li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 1</a></li>" 
+sidebar += "<li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 2</a></li>"
+sidebar += "<li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 3</a></li>"
+sidebar += "<li class='sidebar-item'><a href='#' class='sidebar-anchor'>Item 4</a></li>"
+sidebar += "</ul></div>";
+
+
 
 window.onload = function() {
 
@@ -26,9 +33,11 @@ window.onload = function() {
       $(".sidebar").toggleClass("gray-background");
     }
 
-    $(".button").on("click tap", function() {
-        toggleSidebar();
-    });
+    toggleSidebar();
+    
+    // $(".button").on("click tap", function() {
+    //     toggleSidebar();
+    // });
 
     $(document).keyup(function(e) {
         if (e.keyCode === 27) {
